@@ -4,6 +4,16 @@ class UrlsController < ApplicationController
     @urls = Url.all
   end
 
+  def show
+    @link = Url.find_by(shortened: params[:id])
+    @link.click_count += 1
+    if @link.save
+      redirect_to "#{@link.original}"
+    else
+      [404, "link failed to save"]
+    end
+  end
+
   def new
   end
 
