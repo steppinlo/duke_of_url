@@ -5,13 +5,7 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @link = Url.find_by(shortened: params[:id])
-    @link.click_count += 1
-    if @link.save
-      redirect_to "#{@link.original}"
-    else
-      [404, "link failed to save"]
-    end
+    @url = Url.find_by(id: params[:id])
   end
 
   def new
@@ -20,9 +14,9 @@ class UrlsController < ApplicationController
   #post route
   def create
     shortened = new_link
-    url = Url.new(original: url_params[:original], shortened: shortened)
-    if url.save
-      redirect_to '/'
+    @url = Url.new(original: url_params[:original], shortened: shortened)
+    if @url.save
+      redirect_to @url
     else
       [500, "uh oh! error!"]
       flash[:notice] = "Invalid URL! Please include http/https!"
@@ -31,6 +25,11 @@ class UrlsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def link
+    url = Url.find_by(shortened: params[:id])
+    redirect_to "#{url.original}"
   end
 
   private

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'urls#index'
   resources :urls
 
+  get ':id' => 'urls#link'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
