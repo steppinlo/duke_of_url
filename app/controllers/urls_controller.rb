@@ -25,6 +25,8 @@ class UrlsController < ApplicationController
       redirect_to '/'
     else
       [500, "uh oh! error!"]
+      flash[:notice] = "Invalid URL! Please include http/https!"
+      redirect_to new_url_path
     end
   end
 

@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <%= form_for :urls, url: {action: "create"}, html: {class: "url_form"} do |f| %>
   Enter url: <%= f.text_field :original, class: 'form-control' %><BR>
   <%= f.submit "Submit" %>
