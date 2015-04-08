@@ -1,4 +1,6 @@
-== README
+worked on the challenge. pretty much has all functionality (except for delete). Didn't style, though.
+
+README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
